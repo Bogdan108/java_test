@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Timeout;
 
 import root.gcd.GCD;
 
-import org.junit.*;
 
 public class GCDTest {
     // resource:

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="desktop.GCDTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2024-02-11T00:31:17" hostname="MacBook-Pro-4.local" time="5.862">
+  <properties/>
+  <testcase name="testGCDNonUnitGCD()" classname="desktop.GCDTest" time="0.007"/>
+  <testcase name="testGCDEqualValues()" classname="desktop.GCDTest" time="0.333"/>
+  <testcase name="testGCDPerformance()" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="testGCDNegativeValues()" classname="desktop.GCDTest" time="2.076"/>
+  <testcase name="testGCDZeroValues()" classname="desktop.GCDTest" time="1.264"/>
+  <testcase name="testGCDPositiveValues" classname="desktop.GCDTest" time="2.177"/>
+  <testcase name="testGCDCoprimeValues()" classname="desktop.GCDTest" time="0.001"/>
+  <testcase name="testGCDOneDividesOther()" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="testGCDBoundaryValues()" classname="desktop.GCDTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
