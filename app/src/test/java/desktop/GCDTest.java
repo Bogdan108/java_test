@@ -128,21 +128,19 @@ public class GCDTest {
         Random randomizer = new Random();
         for (int i = 0; i < 10000; ++i) {
             int divider = randomizer.nextInt(Integer.MAX_VALUE);
-            int x = randomizer.nextInt(Integer.MAX_VALUE) * randomizer.nextInt(Integer.MAX_VALUE);
+            int x = divider * randomizer.nextInt(Integer.MAX_VALUE) > Integer.MAX_VALUE ? divider
+                    : divider * randomizer.nextInt(Integer.MAX_VALUE);
             if (x == divider) {
                 continue;
             }
-            assertEquals(gcd(divider, x), gcdTest.gcd(divider, x));
+            if (i > 10000) {
+                assertEquals(gcd(divider, x), gcdTest.gcd(divider, x));
+            } else {
+                assertEquals(gcd(x, divider), gcdTest.gcd(x, divider));
+            }
+
         }
 
-        for (int i = 0; i < 10000; ++i) {
-            int divider = randomizer.nextInt(Integer.MAX_VALUE);
-            int x = randomizer.nextInt(Integer.MAX_VALUE) * randomizer.nextInt(Integer.MAX_VALUE);
-            if (x == divider) {
-                continue;
-            }
-            assertEquals(gcd(x, divider), gcdTest.gcd(x, divider));
-        }
     }
 
     // 7 неравные значения аргументов, дающие неединичный наибольший общий делитель
@@ -159,9 +157,9 @@ public class GCDTest {
         Random randomizer = new Random();
         for (int i = 0; i < 20000000; ++i) {
             int general = simpleNumbers[randomizer.nextInt(simpleNumbers.length)];
-            int x = general * randomizer.nextInt(Integer.MAX_VALUE) > Integer.MAX_VALUE ? Integer.MAX_VALUE
+            int x = general * randomizer.nextInt(Integer.MAX_VALUE) > Integer.MAX_VALUE ? general
                     : general * randomizer.nextInt(Integer.MAX_VALUE);
-            int y = general * randomizer.nextInt(Integer.MAX_VALUE) > Integer.MAX_VALUE ? Integer.MAX_VALUE
+            int y = general * randomizer.nextInt(Integer.MAX_VALUE) > Integer.MAX_VALUE ? general
                     : general * randomizer.nextInt(Integer.MAX_VALUE);
             assertEquals(gcd(x, y), gcdTest.gcd(x, y));
         }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="desktop.GCDTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2024-02-11T12:25:43" hostname="MacBook-Pro-4.local" time="7.394">
+<testsuite name="desktop.GCDTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2024-02-11T12:32:09" hostname="MacBook-Pro-4.local" time="7.875">
   <properties/>
-  <testcase name="testGCDOneGeneralDivider" classname="desktop.GCDTest" time="2.244"/>
-  <testcase name="testGCDLimitValues" classname="desktop.GCDTest" time="0.0"/>
-  <testcase name="testGCDEqualValues" classname="desktop.GCDTest" time="0.315"/>
-  <testcase name="testGCDNegativeValues" classname="desktop.GCDTest" time="1.882"/>
-  <testcase name="testGCDZeroValues" classname="desktop.GCDTest" time="0.48"/>
-  <testcase name="testGCDPositiveValues" classname="desktop.GCDTest" time="1.794"/>
-  <testcase name="testGCDCoprimeValues" classname="desktop.GCDTest" time="0.669"/>
+  <testcase name="testGCDOneGeneralDivider" classname="desktop.GCDTest" time="2.359"/>
+  <testcase name="testGCDLimitValues" classname="desktop.GCDTest" time="0.006"/>
+  <testcase name="testGCDEqualValues" classname="desktop.GCDTest" time="0.34"/>
+  <testcase name="testGCDNegativeValues" classname="desktop.GCDTest" time="2.015"/>
+  <testcase name="testGCDZeroValues" classname="desktop.GCDTest" time="0.496"/>
+  <testcase name="testGCDPositiveValues" classname="desktop.GCDTest" time="1.932"/>
+  <testcase name="testGCDCoprimeValues" classname="desktop.GCDTest" time="0.715"/>
   <testcase name="testGCDOneDividesOther" classname="desktop.GCDTest" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
