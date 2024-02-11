@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Timeout;
 
 import root.gcd.GCD;
 
-
 public class GCDTest {
     // resource:
     // https://www.geeksforgeeks.org/program-to-find-gcd-or-hcf-of-two-numbers/
@@ -42,21 +41,10 @@ public class GCDTest {
         gcdTest = new GCD();
     }
 
-    // генератор тестовых значений
-    private int[] generateRandomNumbers(int count, int lowerBound, int upperBound) {
-        int interval = Math.abs(upperBound - lowerBound) / count;
-        int[] numbers = new int[count];
-        numbers[0] = lowerBound;
-
-        for (int i = 1; i < count; i++) {
-            numbers[i] = numbers[0] + interval;
-        }
-        return numbers;
-    }
-
+    // 1 положительные значения аргументов
+    @Test
     @DisplayName("testGCDPositiveValues")
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
-    @Test
     void testGCDPositiveValues() {
         Random randomizer = new Random();
 
@@ -67,13 +55,15 @@ public class GCDTest {
         }
     }
 
+    // 2 отрицательное значение первого, второго, обоих аргументов
     @Test
+    @DisplayName("testGCDNegativeValues")
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
     void testGCDNegativeValues() {
         Random randomizer = new Random();
         for (int i = 0; i < 10000000; ++i) {
-            int x = randomizer.nextInt(Integer.MAX_VALUE) * (randomizer.nextInt(2) == 1 ? 1 : -1);
-            int y = randomizer.nextInt(Integer.MAX_VALUE) * (x < 0 ? 1 : -1);
+            int x = (randomizer.nextInt(Integer.MAX_VALUE) + 1) * (randomizer.nextInt(2) == 1 ? 1 : -1);
+            int y = (randomizer.nextInt(Integer.MAX_VALUE) + 1) * (x < 0 ? 1 : -1);
             assertEquals(gcd(x, y), gcdTest.gcd(x, y));
         }
 
@@ -84,13 +74,15 @@ public class GCDTest {
         }
     }
 
+    // 3 нулевое значение первого, второго, обоих аргументов
     @Test
+    @DisplayName("testGCDZeroValues")
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
     void testGCDZeroValues() {
         Random randomizer = new Random();
         for (int i = 0; i < 20000000; ++i) {
             int x = randomizer.nextInt(Integer.MAX_VALUE) * (randomizer.nextInt(2) == 1 ? 1 : 0);
-            int y = randomizer.nextInt(Integer.MAX_VALUE) * (x == 0 ? 1 : -1);
+            int y = randomizer.nextInt(Integer.MAX_VALUE) * (x == 0 ? 1 : 0);
             assertEquals(gcd(x, y), gcdTest.gcd(x, y));
         }
 
@@ -98,12 +90,28 @@ public class GCDTest {
 
     }
 
+    // 4 неединичные взаимно простые аргументы (наибольший общий делитель равен 1);
     @Test
+    @DisplayName("testGCDCoprimeValues")
+    @Timeout(value = 10, unit = TimeUnit.SECONDS)
     void testGCDCoprimeValues() {
-        assertEquals(6, gcd(6, 6));
+        int[] simpleNumbers = new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59,
+                61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127,
+                131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191,
+                193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257,
+                263, 269, 271 };
+
+        Random randomizer = new Random();
+        for (int i = 0; i < 20000000; ++i) {
+            int x = simpleNumbers[randomizer.nextInt(simpleNumbers.length)];
+            int y = simpleNumbers[randomizer.nextInt(simpleNumbers.length)];
+            assertEquals(gcd(x, y), gcdTest.gcd(x, y));
+        }
     }
 
+    // 5 равные значения аргументов
     @Test
+    @DisplayName("testGCDEqualValues")
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
     void testGCDEqualValues() {
         Random randomizer = new Random();
@@ -113,25 +121,63 @@ public class GCDTest {
         }
     }
 
+    // 6 неравные значения аргументов, при которых первый делит второй, второй делит
+    // первый
     @Test
+    @DisplayName("testGCDOneDividesOther")
+    @Timeout(value = 10, unit = TimeUnit.SECONDS)
     void testGCDOneDividesOther() {
-        assertEquals(7, gcd(49, 14));
+        Random randomizer = new Random();
+        for (int i = 0; i < 20000000; ++i) {
+            int divider = randomizer.nextInt(Integer.MAX_VALUE);
+            int x = randomizer.nextInt(Integer.MAX_VALUE) * randomizer.nextInt(Integer.MAX_VALUE);
+            if (x == divider) {
+                continue;
+            }
+            assertEquals(gcd(divider, x), gcdTest.gcd(divider, x));
+        }
+
+        for (int i = 0; i < 20000000; ++i) {
+            int divider = randomizer.nextInt(Integer.MAX_VALUE);
+            int x = randomizer.nextInt(Integer.MAX_VALUE) * randomizer.nextInt(Integer.MAX_VALUE);
+            if (x == divider) {
+                continue;
+            }
+            assertEquals(gcd(x, divider), gcdTest.gcd(x, divider));
+        }
     }
 
+    // 7 неравные значения аргументов, дающие неединичный наибольший общий делитель
     @Test
+    @DisplayName("testGCDOneGeneralDivider")
+    @Timeout(value = 10, unit = TimeUnit.SECONDS)
     void testGCDNonUnitGCD() {
-        assertEquals(8, gcd(24, 16));
+        int[] simpleNumbers = new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59,
+                61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127,
+                131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191,
+                193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257,
+                263, 269, 271 };
+
+        Random randomizer = new Random();
+        for (int i = 0; i < 20000000; ++i) {
+            int general = simpleNumbers[randomizer.nextInt(simpleNumbers.length)];
+            int x = general * randomizer.nextInt(Integer.MAX_VALUE);
+            int y = general * randomizer.nextInt(Integer.MAX_VALUE);
+            assertEquals(gcd(x, y), gcdTest.gcd(x, y));
+        }
     }
 
+    // 8 граничные значения аргументов
     @Test
-    void testGCDBoundaryValues() {
-        assertEquals(1, 1);
-    }
-
-    @Test
-    void testGCDPerformance() {
-
-        assertEquals(1, gcd(233, 377));
+    @DisplayName("testGCDLimitValues")
+    @Timeout(value = 10, unit = TimeUnit.SECONDS)
+    void testGCDLimitValues() {
+        Random randomizer = new Random();
+        for (int i = 0; i < 1000; ++i) {
+            int x = randomizer.nextInt() * (randomizer.nextInt(2) == 1 ? 1 : -1);
+            int y = (randomizer.nextInt(2) == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE);
+            assertEquals(gcd(x, y), gcdTest.gcd(x, y));
+        }
     }
 
 }
