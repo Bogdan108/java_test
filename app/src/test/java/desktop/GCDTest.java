@@ -18,7 +18,7 @@ public class GCDTest {
     // Recursive function to return gcd of a and b
     private GCD gcdTest;
 
-    int gcd(int a, int b) {
+    int gcd(long a, long b) {
         a = Math.abs(a);
         b = Math.abs(b);
         while (a > 0 && b > 0) {
@@ -29,9 +29,9 @@ public class GCDTest {
             }
         }
         if (a == 0) {
-            return b;
+            return (int) b;
         }
-        return a;
+        return (int) a;
     }
 
     @BeforeEach
@@ -173,10 +173,11 @@ public class GCDTest {
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
     void testGCDLimitValues() {
         Random randomizer = new Random();
-        int x, y;
-        x = randomizer.nextInt() * (randomizer.nextInt(2) == 1 ? 1 : -1);
-        y = randomizer.nextInt(2) == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+
+        int x = randomizer.nextInt() * (randomizer.nextInt(2) == 1 ? 1 : -1);
+        int y = randomizer.nextInt(2) == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
         assertEquals(gcd(x, y), gcdTest.gcd(x, y));
+
     }
 
 }
