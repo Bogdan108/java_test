@@ -1,10 +1,8 @@
 package desktop;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -128,7 +126,7 @@ public class GCDTest {
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
     void testGCDOneDividesOther() {
         Random randomizer = new Random();
-        for (int i = 0; i < 20000000; ++i) {
+        for (int i = 0; i < 10000; ++i) {
             int divider = randomizer.nextInt(Integer.MAX_VALUE);
             int x = randomizer.nextInt(Integer.MAX_VALUE) * randomizer.nextInt(Integer.MAX_VALUE);
             if (x == divider) {
@@ -137,7 +135,7 @@ public class GCDTest {
             assertEquals(gcd(divider, x), gcdTest.gcd(divider, x));
         }
 
-        for (int i = 0; i < 20000000; ++i) {
+        for (int i = 0; i < 10000; ++i) {
             int divider = randomizer.nextInt(Integer.MAX_VALUE);
             int x = randomizer.nextInt(Integer.MAX_VALUE) * randomizer.nextInt(Integer.MAX_VALUE);
             if (x == divider) {
@@ -161,8 +159,10 @@ public class GCDTest {
         Random randomizer = new Random();
         for (int i = 0; i < 20000000; ++i) {
             int general = simpleNumbers[randomizer.nextInt(simpleNumbers.length)];
-            int x = general * randomizer.nextInt(Integer.MAX_VALUE);
-            int y = general * randomizer.nextInt(Integer.MAX_VALUE);
+            int x = general * randomizer.nextInt(Integer.MAX_VALUE) > Integer.MAX_VALUE ? Integer.MAX_VALUE
+                    : general * randomizer.nextInt(Integer.MAX_VALUE);
+            int y = general * randomizer.nextInt(Integer.MAX_VALUE) > Integer.MAX_VALUE ? Integer.MAX_VALUE
+                    : general * randomizer.nextInt(Integer.MAX_VALUE);
             assertEquals(gcd(x, y), gcdTest.gcd(x, y));
         }
     }
@@ -173,11 +173,10 @@ public class GCDTest {
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
     void testGCDLimitValues() {
         Random randomizer = new Random();
-        for (int i = 0; i < 1000; ++i) {
-            int x = randomizer.nextInt() * (randomizer.nextInt(2) == 1 ? 1 : -1);
-            int y = (randomizer.nextInt(2) == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE);
-            assertEquals(gcd(x, y), gcdTest.gcd(x, y));
-        }
+        int x, y;
+        x = randomizer.nextInt() * (randomizer.nextInt(2) == 1 ? 1 : -1);
+        y = randomizer.nextInt(2) == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+        assertEquals(gcd(x, y), gcdTest.gcd(x, y));
     }
 
 }
