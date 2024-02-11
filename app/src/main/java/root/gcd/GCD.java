@@ -19,9 +19,9 @@ public class GCD {
     long t, x_l = x, y_l = y;
 
     if (x < 0)
-      x_l = -x;
+      x_l = -x_l;
     if (y < 0)
-      y_l = -y;
+      y_l = -y_l;
 
     while (y_l != 0) {
       if (y_l > x_l) {

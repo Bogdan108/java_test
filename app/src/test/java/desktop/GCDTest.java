@@ -173,11 +173,11 @@ public class GCDTest {
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
     void testGCDLimitValues() {
         Random randomizer = new Random();
-
-        int x = randomizer.nextInt() * (randomizer.nextInt(2) == 1 ? 1 : -1);
-        int y = randomizer.nextInt(2) == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
-        assertEquals(gcd(x, y), gcdTest.gcd(x, y));
-
+        for (int i = 0; i < 10000; ++i) {
+            int x = randomizer.nextInt() * (randomizer.nextInt(2) == 1 ? 1 : -1);
+            int y = randomizer.nextInt(2) == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+            assertEquals(gcd(x, y), gcdTest.gcd(x, y));
+        }
     }
 
 }
