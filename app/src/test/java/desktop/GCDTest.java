@@ -172,7 +172,7 @@ public class GCDTest {
     void testGCDLimitValues() {
         Random randomizer = new Random();
         for (int i = 0; i < 10000; ++i) {
-            int x = randomizer.nextInt() * (randomizer.nextInt(2) == 1 ? 1 : -1);
+            int x = randomizer.nextInt(Integer.MAX_VALUE) * (randomizer.nextInt(2) == 1 ? 1 : -1);
             int y = randomizer.nextInt(2) == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
             assertEquals(gcd(x, y), gcdTest.gcd(x, y));
         }
