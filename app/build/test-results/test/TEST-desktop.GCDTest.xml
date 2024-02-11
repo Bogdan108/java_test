@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="desktop.GCDTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2024-02-11T12:40:14" hostname="MacBook-Pro-4.local" time="7.935">
+<testsuite name="desktop.GCDTest" tests="44" skipped="0" failures="0" errors="0" timestamp="2024-02-11T16:41:53" hostname="MacBook-Pro-4.local" time="0.057">
   <properties/>
-  <testcase name="testGCDOneGeneralDivider" classname="desktop.GCDTest" time="2.284"/>
-  <testcase name="testGCDLimitValues" classname="desktop.GCDTest" time="0.003"/>
-  <testcase name="testGCDEqualValues" classname="desktop.GCDTest" time="0.331"/>
-  <testcase name="testGCDNegativeValues" classname="desktop.GCDTest" time="2.073"/>
-  <testcase name="testGCDZeroValues" classname="desktop.GCDTest" time="0.5"/>
-  <testcase name="testGCDPositiveValues" classname="desktop.GCDTest" time="1.963"/>
-  <testcase name="testGCDCoprimeValues" classname="desktop.GCDTest" time="0.776"/>
-  <testcase name="testGCDOneDividesOther" classname="desktop.GCDTest" time="0.002"/>
+  <testcase name="[1] 41, 246" classname="desktop.GCDTest" time="0.018"/>
+  <testcase name="[2] 101, 2828" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[3] 148, -333" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[4] -355, 568" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[5] -3817, -2082" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[6] 3688, 3277" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[1] 33, 2147483647" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[2] -17, 2147483647" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[3] 55, -2147483648" classname="desktop.GCDTest" time="0.001"/>
+  <testcase name="[4] 44, -2147483648" classname="desktop.GCDTest" time="0.001"/>
+  <testcase name="[5] -702, -2147483648" classname="desktop.GCDTest" time="0.001"/>
+  <testcase name="[6] 345, 2147483647" classname="desktop.GCDTest" time="0.001"/>
+  <testcase name="[7] -348, -2147483648" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[1] 1, 1" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[2] -100, -100" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[3] 999, 999" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[4] 0, 0" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[5] -111, -111" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[1] -1, 9" classname="desktop.GCDTest" time="0.001"/>
+  <testcase name="[2] -4, 6" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[3] 3, -5" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[4] -1, -2" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[1] 0, 9" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[2] 0, -5" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[3] -3, 0" classname="desktop.GCDTest" time="0.001"/>
+  <testcase name="[4] 1, 0" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[5] 0, 0" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[1] 100, 9" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[2] 4, 6" classname="desktop.GCDTest" time="0.001"/>
+  <testcase name="[3] 3, 5" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[4] 1, 2" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[1] 61, 67" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[2] 211, 163" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[3] 173, 241" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[4] 257, 127" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[5] 199, 223" classname="desktop.GCDTest" time="0.001"/>
+  <testcase name="[1] 33, 561" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[2] 17, -748" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[3] -55, 880" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[4] -44, -1452" classname="desktop.GCDTest" time="0.001"/>
+  <testcase name="[5] 702, 117" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[6] 345, -69" classname="desktop.GCDTest" time="0.001"/>
+  <testcase name="[7] -348, 58" classname="desktop.GCDTest" time="0.0"/>
+  <testcase name="[8] -549, -61" classname="desktop.GCDTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

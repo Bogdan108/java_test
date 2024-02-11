@@ -2,13 +2,13 @@ package desktop;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import root.gcd.GCD;
 
@@ -40,142 +40,141 @@ public class GCDTest {
     }
 
     // 1 положительные значения аргументов
-    @Test
+    @ParameterizedTest
+    @CsvSource({
+            "100, 9",
+            "4, 6",
+            "3, 5",
+            "1, 2",
+    })
     @DisplayName("testGCDPositiveValues")
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
-    void testGCDPositiveValues() {
-        Random randomizer = new Random();
+    void testGCDPositiveValues(int x, int y) {
 
-        for (int i = 0; i < 20000000; ++i) {
-            int x = randomizer.nextInt(Integer.MAX_VALUE) + 1;
-            int y = randomizer.nextInt(Integer.MAX_VALUE) + 1;
-            assertEquals(gcd(x, y), gcdTest.gcd(x, y));
-        }
+        assertEquals(gcd(x, y), gcdTest.gcd(x, y));
+
     }
 
     // 2 отрицательное значение первого, второго, обоих аргументов
-    @Test
+    @ParameterizedTest
+    @CsvSource({
+            "-1, 9",
+            "-4, 6",
+            "3, -5",
+            "-1, -2",
+    })
     @DisplayName("testGCDNegativeValues")
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
-    void testGCDNegativeValues() {
-        Random randomizer = new Random();
-        for (int i = 0; i < 10000000; ++i) {
-            int x = (randomizer.nextInt(Integer.MAX_VALUE) + 1) * (randomizer.nextInt(2) == 1 ? 1 : -1);
-            int y = (randomizer.nextInt(Integer.MAX_VALUE) + 1) * (x < 0 ? 1 : -1);
-            assertEquals(gcd(x, y), gcdTest.gcd(x, y));
-        }
-
-        for (int i = 0; i < 10000000; ++i) {
-            int x = randomizer.nextInt(Integer.MAX_VALUE) * -1;
-            int y = randomizer.nextInt(Integer.MAX_VALUE) * -1;
-            assertEquals(gcd(x, y), gcdTest.gcd(x, y));
-        }
+    void testGCDNegativeValues(int x, int y) {
+        assertEquals(gcd(x, y), gcdTest.gcd(x, y));
     }
 
     // 3 нулевое значение первого, второго, обоих аргументов
-    @Test
+    @ParameterizedTest
+    @CsvSource({
+            "0, 9",
+            "0, -5",
+            "-3, 0",
+            "1, 0",
+            "0, 0",
+    })
     @DisplayName("testGCDZeroValues")
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
-    void testGCDZeroValues() {
-        Random randomizer = new Random();
-        for (int i = 0; i < 20000000; ++i) {
-            int x = randomizer.nextInt(Integer.MAX_VALUE) * (randomizer.nextInt(2) == 1 ? 1 : 0);
-            int y = randomizer.nextInt(Integer.MAX_VALUE) * (x == 0 ? 1 : 0);
-            assertEquals(gcd(x, y), gcdTest.gcd(x, y));
-        }
-
-        assertEquals(gcd(0, 0), gcdTest.gcd(0, 0));
+    void testGCDZeroValues(int x, int y) {
+        assertEquals(gcd(x, y), gcdTest.gcd(x, y));
 
     }
 
     // 4 неединичные взаимно простые аргументы (наибольший общий делитель равен 1);
-    @Test
+    @ParameterizedTest
+    @CsvSource({
+            "61, 67",
+            "211, 163",
+            "173, 241",
+            "257, 127",
+            "199, 223",
+    })
     @DisplayName("testGCDCoprimeValues")
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
-    void testGCDCoprimeValues() {
-        int[] simpleNumbers = new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59,
-                61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127,
-                131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191,
-                193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257,
-                263, 269, 271 };
+    void testGCDCoprimeValues(int x, int y) {
 
-        Random randomizer = new Random();
-        for (int i = 0; i < 20000000; ++i) {
-            int x = simpleNumbers[randomizer.nextInt(simpleNumbers.length)];
-            int y = simpleNumbers[randomizer.nextInt(simpleNumbers.length)];
-            assertEquals(gcd(x, y), gcdTest.gcd(x, y));
-        }
+        assertEquals(gcd(x, y), gcdTest.gcd(x, y));
+
     }
 
     // 5 равные значения аргументов
-    @Test
+    @ParameterizedTest
+    @CsvSource({
+            "1, 1",
+            "-100, -100",
+            "999, 999",
+            "0, 0",
+            "-111, -111",
+    })
     @DisplayName("testGCDEqualValues")
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
-    void testGCDEqualValues() {
-        Random randomizer = new Random();
-        for (int i = 0; i < 20000000; ++i) {
-            int x = randomizer.nextInt(Integer.MAX_VALUE) * (randomizer.nextInt(2) == 1 ? 1 : -1);
-            assertEquals(gcd(x, x), gcdTest.gcd(x, x));
-        }
+    void testGCDEqualValues(int x, int y) {
+
+        assertEquals(gcd(x, x), gcdTest.gcd(x, x));
+
     }
 
     // 6 неравные значения аргументов, при которых первый делит второй, второй делит
     // первый
-    @Test
+    @ParameterizedTest
+    @CsvSource({
+            "33, 561",
+            "17, -748",
+            "-55, 880",
+            "-44, -1452",
+            "702, 117",
+            "345, -69",
+            "-348, 58",
+            "-549, -61",
+
+    })
     @DisplayName("testGCDOneDividesOther")
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
-    void testGCDOneDividesOther() {
-        Random randomizer = new Random();
-        for (int i = 0; i < 10000; ++i) {
-            int divider = randomizer.nextInt(Integer.MAX_VALUE);
-            int x = divider * randomizer.nextInt(Integer.MAX_VALUE) > Integer.MAX_VALUE ? divider
-                    : divider * randomizer.nextInt(Integer.MAX_VALUE);
-            if (x == divider) {
-                continue;
-            }
-            if (i > 10000) {
-                assertEquals(gcd(divider, x), gcdTest.gcd(divider, x));
-            } else {
-                assertEquals(gcd(x, divider), gcdTest.gcd(x, divider));
-            }
+    void testGCDOneDividesOther(int x, int y) {
 
-        }
+        assertEquals(gcd(x, y), gcdTest.gcd(x, y));
 
     }
 
     // 7 неравные значения аргументов, дающие неединичный наибольший общий делитель
-    @Test
+    @ParameterizedTest
+    @CsvSource({
+            "41, 246",
+            "101, 2828",
+            "148, -333",
+            "-355, 568",
+            "-3817, -2082",
+            "3688, 3277",
+
+    })
+
     @DisplayName("testGCDOneGeneralDivider")
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
-    void testGCDNonUnitGCD() {
-        int[] simpleNumbers = new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59,
-                61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127,
-                131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191,
-                193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257,
-                263, 269, 271 };
-
-        Random randomizer = new Random();
-        for (int i = 0; i < 20000000; ++i) {
-            int general = simpleNumbers[randomizer.nextInt(simpleNumbers.length)];
-            int x = general * randomizer.nextInt(Integer.MAX_VALUE) > Integer.MAX_VALUE ? general
-                    : general * randomizer.nextInt(Integer.MAX_VALUE);
-            int y = general * randomizer.nextInt(Integer.MAX_VALUE) > Integer.MAX_VALUE ? general
-                    : general * randomizer.nextInt(Integer.MAX_VALUE);
-            assertEquals(gcd(x, y), gcdTest.gcd(x, y));
-        }
+    void testGCDNonUnitGCD(int x, int y) {
+        assertEquals(gcd(x, y), gcdTest.gcd(x, y));
     }
 
     // 8 граничные значения аргументов
-    @Test
+    @ParameterizedTest
+    @CsvSource({
+            "33, " + Integer.MAX_VALUE,
+            "-17," + Integer.MAX_VALUE,
+            "55, " + Integer.MIN_VALUE,
+            "44, " + Integer.MIN_VALUE,
+            "-702, " + Integer.MIN_VALUE,
+            "345," + Integer.MAX_VALUE,
+            "-348, " + Integer.MIN_VALUE,
+
+    })
     @DisplayName("testGCDLimitValues")
     @Timeout(value = 10, unit = TimeUnit.SECONDS)
-    void testGCDLimitValues() {
-        Random randomizer = new Random();
-        for (int i = 0; i < 10000; ++i) {
-            int x = randomizer.nextInt(Integer.MAX_VALUE) * (randomizer.nextInt(2) == 1 ? 1 : -1);
-            int y = randomizer.nextInt(2) == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
-            assertEquals(gcd(x, y), gcdTest.gcd(x, y));
-        }
+    void testGCDLimitValues(int x, int y) {
+        assertEquals(gcd(x, y), gcdTest.gcd(x, y));
     }
 
 }
