@@ -169,6 +169,9 @@ public class GCDTest {
             "-702, " + Integer.MIN_VALUE,
             "345," + Integer.MAX_VALUE,
             "-348, " + Integer.MIN_VALUE,
+            Integer.MIN_VALUE + "," + Integer.MIN_VALUE,
+            Integer.MAX_VALUE + "," + Integer.MIN_VALUE,
+            Integer.MAX_VALUE + "," + Integer.MAX_VALUE,
 
     })
     @DisplayName("testGCDLimitValues")
